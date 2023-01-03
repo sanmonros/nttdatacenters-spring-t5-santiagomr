@@ -23,7 +23,7 @@ public class Customers implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** Identificador del cliente */
-	private long customerId;
+	private Long customerId;
 
 	/** Nombre del cliente */
 	private String name;
@@ -39,6 +39,8 @@ public class Customers implements Serializable {
 
 	/** Dni del cliente */
 	private String dni;
+	
+	
 
 	/**
 	 * Devolver el identificador del cliente
@@ -48,7 +50,7 @@ public class Customers implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CUSTOMER_ID")
-	public long getCustomerId() {
+	public Long getCustomerId() {
 		return customerId;
 	}
 
@@ -57,7 +59,7 @@ public class Customers implements Serializable {
 	 * 
 	 * @param customerId the customerId to set
 	 */
-	public void setCustomerId(long customerId) {
+	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
 
@@ -100,7 +102,7 @@ public class Customers implements Serializable {
 	}
 
 	/**
-	 * Devolverel segundo apellido del cliente
+	 * Devolver el segundo apellido del cliente
 	 * 
 	 * @return the secondLastName
 	 */

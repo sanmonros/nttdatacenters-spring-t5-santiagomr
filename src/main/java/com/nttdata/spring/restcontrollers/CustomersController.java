@@ -3,8 +3,8 @@ package com.nttdata.spring.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,30 +20,31 @@ import com.nttdata.spring.services.CustomersManagementServiceI;
  *
  */
 @RestController
-@RequestMapping("/customers")
+@RequestMapping(path = "/customers")
 public class CustomersController {
 
+	/** Servicio cliente*/
 	@Autowired
 	CustomersManagementServiceI customerService;
-
-	/**
-	 * Lista de todos los clientes existentes
-	 * 
-	 * @return
-	 */
-	@RequestMapping("showCustomers")
-	public @ResponseBody List<Customers> showAllCustomers() {
-		return customerService.getAllCustomers();
-	}
 
 	/**
 	 * Añadir un nuevo cliente
 	 * 
 	 * @param newCustomers
 	 */
-	@PostMapping
+	@GetMapping(value = "/newCustomers")
 	public void generateCustomers(@ModelAttribute("customers") Customers newCustomers) {
 		customerService.insertCustomers(newCustomers);
+	}
+
+	/**
+	 * Lista de todos los clientes existentes
+	 * 
+	 * @return
+	 */
+	@GetMapping(value = "/showCustomers")
+	public @ResponseBody List<Customers> showAll() {
+		return customerService.getAllCustomers();
 	}
 
 	/**
@@ -59,4 +60,27 @@ public class CustomersController {
 			@RequestParam String secondLastName) {
 		return customerService.getCustomersByFullName(name, lastName, secondLastName);
 	}
+
+	/**
+	 * Consultar por el Id del cliente
+	 * 
+	 * @param customerId
+	 * @return
+	 */
+	@RequestMapping("searchCustomersById")
+	public @ResponseBody Customers searchById(@RequestParam Long customerId) {
+		return customerService.getCustomersById(customerId);
+	}
+
+	/**
+	 * Borrar cliente por Id introducido
+	 * 
+	 * @param customerId
+	 */
+	@RequestMapping("deleteCustomersById")
+	public @ResponseBody void deleteById(@RequestParam Long customerId) {
+		customerService.deleteCustomersById(customerId);
+		System.out.println("Éxito en el borrado");
+	}
+
 }

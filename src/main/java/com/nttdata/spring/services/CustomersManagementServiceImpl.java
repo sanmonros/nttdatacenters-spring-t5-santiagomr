@@ -3,6 +3,7 @@ package com.nttdata.spring.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.nttdata.spring.repository.Customers;
@@ -15,8 +16,10 @@ import com.nttdata.spring.repository.CustomersRepository;
  *
  */
 @Service
+@Primary
 public class CustomersManagementServiceImpl implements CustomersManagementServiceI {
 
+	/** Repositorio de clientes*/
 	@Autowired
 	CustomersRepository customersRe;
 

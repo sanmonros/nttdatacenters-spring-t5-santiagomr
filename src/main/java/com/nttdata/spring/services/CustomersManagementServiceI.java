@@ -54,7 +54,7 @@ public interface CustomersManagementServiceI {
 			String dni);
 
 	/**
-	 * Búscar a un cliente por su Id
+	 * Buscar a un cliente por su Id
 	 * 
 	 * @param customerId
 	 * @return
